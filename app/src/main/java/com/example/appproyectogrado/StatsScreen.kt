@@ -21,9 +21,6 @@ import androidx.navigation.compose.rememberNavController
 import co.yml.charts.axis.AxisData
 import co.yml.charts.common.extensions.formatToSinglePrecision
 import co.yml.charts.common.model.Point
-import co.yml.charts.common.utils.DataUtils
-import co.yml.charts.ui.barchart.BarChart
-import co.yml.charts.ui.barchart.models.BarChartData
 import co.yml.charts.ui.linechart.LineChart
 import co.yml.charts.ui.linechart.model.*
 import com.example.appproyectogrado.viewmodel.StatsScreenViewModel
@@ -92,32 +89,7 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
         yAxisData = yAxisData,
         gridLines = GridLines()
     )
-
-    val barChartData = DataUtils.getBarChartData(50, 30)
-    val yStepSize = 10
-    val xAxisDataBarChart = AxisData.Builder()
-        .axisStepSize(30.dp)
-        .steps(barChartData.size - 1)
-        .bottomPadding(40.dp)
-        .axisLabelAngle(20f)
-        .labelData { index -> barChartData[index].label }
-        .build()
-
-    val yAxisDataBarChart = AxisData.Builder()
-        .steps(yStepSize)
-        .labelAndAxisLinePadding(20.dp)
-        .axisOffset(20.dp)
-        .labelData { index -> (index * (30 / yStepSize)).toString() }
-        .build()
-
-    val barChartDataData = BarChartData(
-        chartData = barChartData,
-        xAxisData = xAxisDataBarChart,
-        yAxisData = yAxisDataBarChart
-    )
-
-    val listOfPokemons = statsScreenViewModel.pokemon.collectAsState().value
-    statsScreenViewModel.loadPokemon()
+    val cropData = statsScreenViewModel.cropData.collectAsState().value
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -130,12 +102,8 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
                 lineChartData = lineChartData
             )
         }
-        item {
-            BarChart(modifier = Modifier.height(350.dp), barChartData = barChartDataData)
-        }
-
-        items(listOfPokemons) {
-            Text(text = it.name)
+        items(cropData) {
+            Text(text = it.device)
         }
     }
 }
