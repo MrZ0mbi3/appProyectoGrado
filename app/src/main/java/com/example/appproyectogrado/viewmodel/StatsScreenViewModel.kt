@@ -16,7 +16,11 @@ class StatsScreenViewModel : ViewModel() {
     val chartPointsHum01 = _chartPointsHum01
     private val _chartPointsLux = MutableStateFlow(listOf<Point>())
     val chartPointsLux = _chartPointsLux
+    private val _chartPointsTemp = MutableStateFlow(listOf<Point>())
+    val chartPointsTemp = _chartPointsTemp
     private val cropDataApi = Api.build()
+    private val _firstMicrocontroller = MutableStateFlow<String>("")
+    val firstMicrocontroller = _firstMicrocontroller
 
     init {
         loadCropData()
@@ -28,6 +32,8 @@ class StatsScreenViewModel : ViewModel() {
                 _cropData.value = it
                 makeListPointsHum01()
                 makeListPointsLight()
+                makeListPointsTemp()
+                _firstMicrocontroller.value = cropData.value[0].device
             }
         }
     }
@@ -72,6 +78,27 @@ class StatsScreenViewModel : ViewModel() {
         }
         pointsData.sortBy { it.x }
         _chartPointsLux.value = pointsData
+    }
+
+    private fun makeListPointsTemp() {
+        val pointsData = mutableListOf<Point>()
+        var tempAvg = 0f
+        val hourUsed = mutableListOf<Float>()
+        var actualHour: Float
+        cropData.value.forEach { data ->
+            data.temp01.forEach {
+                tempAvg += it
+            }
+            actualHour = getHourFromDate(data.publishedAt)
+            tempAvg /= data.temp01.size
+            if (!hourUsed.contains(actualHour)) {
+                pointsData.add(Point(x = actualHour, y = tempAvg))
+                hourUsed.add(actualHour)
+            }
+            tempAvg = 0f
+        }
+        pointsData.sortBy { it.x }
+        _chartPointsTemp.value = pointsData
     }
 
     private fun getHourFromDate(date: String): Float {
