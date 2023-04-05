@@ -20,7 +20,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import co.yml.charts.axis.AxisData
 import co.yml.charts.common.extensions.formatToSinglePrecision
-import co.yml.charts.common.model.Point
 import co.yml.charts.ui.linechart.LineChart
 import co.yml.charts.ui.linechart.model.*
 import com.example.appproyectogrado.viewmodel.StatsScreenViewModel
@@ -51,59 +50,61 @@ fun StatsScreen(navController: NavHostController = rememberNavController()) {
 
 @Composable
 fun Stats(statsScreenViewModel: StatsScreenViewModel) {
-    val steps = 5
-    val pointsData: List<Point> =
-        listOf(Point(0f, 40f), Point(1f, 90f), Point(2f, 0f), Point(3f, 60f), Point(4f, 10f))
-    val xAxisData = AxisData.Builder()
-        .axisStepSize(100.dp)
-        .steps(pointsData.size - 1)
-        .labelData { i -> i.toString() }
-        .labelAndAxisLinePadding(15.dp)
-        .build()
-
-    val yAxisData = AxisData.Builder()
-        .steps(steps)
-        .labelAndAxisLinePadding(20.dp)
-        .labelData { i ->
-            // Add yMin to get the negative axis values to the scale
-            val yMin = pointsData.minOf { it.y }
-            val yMax = pointsData.maxOf { it.y }
-            val yScale = (yMax - yMin) / steps
-            ((i * yScale) + yMin).formatToSinglePrecision()
-        }.build()
-
-    val lineChartData = LineChartData(
-        linePlotData = LinePlotData(
-            lines = listOf(
-                Line(
-                    dataPoints = pointsData,
-                    LineStyle(),
-                    IntersectionPoint(),
-                    SelectionHighlightPoint(),
-                    ShadowUnderLine(),
-                    SelectionHighlightPopUp()
-                )
-            ),
-        ),
-        xAxisData = xAxisData,
-        yAxisData = yAxisData,
-        gridLines = GridLines()
-    )
     val cropData = statsScreenViewModel.cropData.collectAsState().value
+    val hum01ChartLineData = statsScreenViewModel.chartPointsHum01.collectAsState().value
+    var lineChartData: LineChartData? = null
+    if (hum01ChartLineData.isNotEmpty()) {
+        val xAxisData = AxisData.Builder()
+            .axisStepSize(30.dp)
+            .steps(30)
+            .labelData { i -> i.toString() }
+            .labelAndAxisLinePadding(15.dp)
+            .build()
+
+        val yAxisData = AxisData.Builder()
+            .labelAndAxisLinePadding(15.dp)
+            .labelData { i ->
+                // Add yMin to get the negative axis values to the scale
+                val yMin = hum01ChartLineData.minOf { it.y }
+                val yMax = hum01ChartLineData.maxOf { it.y }
+                val yScale = (yMax - yMin) / 1f
+                ((i * yScale) + yMin).formatToSinglePrecision()
+            }.build()
+        lineChartData = LineChartData(
+            linePlotData = LinePlotData(
+                lines = listOf(
+                    Line(
+                        dataPoints = hum01ChartLineData,
+                        LineStyle(),
+                        IntersectionPoint(),
+                        SelectionHighlightPoint(color = Color.Gray),
+                        ShadowUnderLine(color = Color.Cyan),
+                        SelectionHighlightPopUp()
+                    )
+                ),
+            ),
+            xAxisData = xAxisData,
+            yAxisData = yAxisData,
+            gridLines = GridLines()
+        )
+    }
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        item {
-            LineChart(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp),
-                lineChartData = lineChartData
-            )
+        lineChartData?.let {
+            item { Text(text = stringResource(id = R.string.grafica_hum01)) }
+            item {
+                LineChart(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp),
+                    lineChartData = lineChartData
+                )
+            }
         }
         items(cropData) {
-            Text(text = it.device)
+            Text(text = it.toString())
         }
     }
 }
