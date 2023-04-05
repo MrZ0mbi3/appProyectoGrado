@@ -52,15 +52,16 @@ fun StatsScreen(navController: NavHostController = rememberNavController()) {
 fun Stats(statsScreenViewModel: StatsScreenViewModel) {
     val cropData = statsScreenViewModel.cropData.collectAsState().value
     val hum01ChartLineData = statsScreenViewModel.chartPointsHum01.collectAsState().value
-    var lineChartData: LineChartData? = null
+    val luxChartLineData = statsScreenViewModel.chartPointsLux.collectAsState().value
+    var lineChartHum01: LineChartData? = null
+    var lineChartLux: LineChartData? = null
+    val xAxisData = AxisData.Builder()
+        .axisStepSize(30.dp)
+        .steps(30)
+        .labelData { i -> i.toString() }
+        .labelAndAxisLinePadding(15.dp)
+        .build()
     if (hum01ChartLineData.isNotEmpty()) {
-        val xAxisData = AxisData.Builder()
-            .axisStepSize(30.dp)
-            .steps(30)
-            .labelData { i -> i.toString() }
-            .labelAndAxisLinePadding(15.dp)
-            .build()
-
         val yAxisData = AxisData.Builder()
             .labelAndAxisLinePadding(15.dp)
             .labelData { i ->
@@ -70,7 +71,7 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
                 val yScale = (yMax - yMin) / 1f
                 ((i * yScale) + yMin).formatToSinglePrecision()
             }.build()
-        lineChartData = LineChartData(
+        lineChartHum01 = LineChartData(
             linePlotData = LinePlotData(
                 lines = listOf(
                     Line(
@@ -88,18 +89,57 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
             gridLines = GridLines()
         )
     }
+    if (luxChartLineData.isNotEmpty()) {
+        val yAxisData = AxisData.Builder()
+            .labelAndAxisLinePadding(15.dp)
+            .labelData { i ->
+                // Add yMin to get the negative axis values to the scale
+                val yMin = luxChartLineData.minOf { it.y }
+                val yMax = luxChartLineData.maxOf { it.y }
+                val yScale = (yMax - yMin) / 1f
+                ((i * yScale) + yMin).formatToSinglePrecision()
+            }.build()
+        lineChartLux = LineChartData(
+            linePlotData = LinePlotData(
+                lines = listOf(
+                    Line(
+                        dataPoints = luxChartLineData,
+                        LineStyle(),
+                        IntersectionPoint(),
+                        SelectionHighlightPoint(color = Color.Gray),
+                        ShadowUnderLine(color = Color.Cyan),
+                        SelectionHighlightPopUp()
+                    )
+                ),
+            ),
+            xAxisData = xAxisData,
+            yAxisData = yAxisData,
+            gridLines = GridLines()
+        )
+    }
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        lineChartData?.let {
+        lineChartHum01?.let {
             item { Text(text = stringResource(id = R.string.grafica_hum01)) }
             item {
                 LineChart(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(300.dp),
-                    lineChartData = lineChartData
+                    lineChartData = lineChartHum01
+                )
+            }
+        }
+        lineChartLux?.let {
+            item { Text(text = stringResource(id = R.string.grafica_lux)) }
+            item {
+                LineChart(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp),
+                    lineChartData = lineChartLux
                 )
             }
         }
