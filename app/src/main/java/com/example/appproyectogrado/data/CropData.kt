@@ -10,14 +10,22 @@ data class CropDataResponse(
 )
 
 data class CropData(
+    @SerializedName("device")
     val device: String,
+    @SerializedName("hum_01")
     val hum01: List<Float>,
+    @SerializedName("hum_02")
     val hum02: List<Float>,
+    @SerializedName("hygro_01")
     val hygro01: List<Float>,
+    @SerializedName("lux_01")
     val lux01: List<Float>,
+    @SerializedName("temp_01")
     val temp01: List<Float>,
+    @SerializedName("temp_02")
     val temp02: List<Float>,
-    val published_at: String,
+    @SerializedName("published_at")
+    val publishedAt: String,
 )
 
 data class PredictionResponse(
