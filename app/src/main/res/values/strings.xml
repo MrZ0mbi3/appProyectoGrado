@@ -7,6 +7,7 @@
     <string name="datosrecibidos">Datos Recibidos</string>
     <string name="grafica_hum01">Humedad en el cultivo durante 24 horas</string>
     <string name="grafica_lux">Luz en el cultivo durante 24 horas</string>
+    <string name="grafica_temp">Temperatura en el cultivo durante 24 horas</string>
     <string name="datos_recibidos_24horas">Datos Recibidos durante 24 horas</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
