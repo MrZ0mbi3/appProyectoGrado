@@ -1,6 +1,5 @@
 package com.example.appproyectogrado.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.yml.charts.common.model.Point
@@ -103,7 +102,6 @@ class StatsScreenViewModel : ViewModel() {
 
     private fun getHourFromDate(date: String): Float {
         val newDate = date.split("T")
-        Log.d("test", newDate[1][0].toString() + newDate[1][1].toString())
         return (newDate[1][0].toString() + newDate[1][1].toString()).toFloat()
     }
 }
