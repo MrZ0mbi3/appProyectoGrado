@@ -9,6 +9,11 @@
     <string name="grafica_lux">Luz en el cultivo durante 24 horas</string>
     <string name="grafica_temp">Temperatura en el cultivo durante 24 horas</string>
     <string name="datos_recibidos_24horas">Datos Recibidos durante 24 horas</string>
+    <string name="estado_microcontrolador">Estado del Microcontrolador</string>
+    <string name="hora_ultimo_dato_tomado">Ultimos datos tomado en:</string>
+    <string name="ultimo_dato_tomado">Ultimos datos:</string>
+    <string name="activo">Estado MicroControlador: Activo</string>
+    <string name="Inactivo">Estado MicroControlador: Inactivo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
