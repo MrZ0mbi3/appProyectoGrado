@@ -1,5 +1,6 @@
 package com.example.appproyectogrado
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +13,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -25,6 +27,7 @@ import co.yml.charts.ui.linechart.model.*
 import com.example.appproyectogrado.viewmodel.StatsScreenViewModel
 import kotlinx.coroutines.launch
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun StatsScreen(navController: NavHostController = rememberNavController()) {
     val scaffoldState = rememberScaffoldState()
@@ -154,12 +157,18 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
         horizontalAlignment = Alignment.Start
     ) {
         item {
-            Text(modifier = Modifier.padding(vertical = 20.dp), text = firstDeviceName)
+            Text(
+                modifier = Modifier
+                    .padding(vertical = 20.dp)
+                    .testTag("deviceName"),
+                text = firstDeviceName
+            )
         }
         lineChartHum01?.let {
             item {
                 Text(
                     text = stringResource(id = R.string.grafica_hum01),
+                    modifier = Modifier.testTag("lineChartHum01"),
                     textAlign = TextAlign.Center
                 )
             }
@@ -176,6 +185,7 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
             item {
                 Text(
                     text = stringResource(id = R.string.grafica_lux),
+                    modifier = Modifier.testTag("lineChartLux"),
                     textAlign = TextAlign.Center
                 )
             }
@@ -192,6 +202,7 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
             item {
                 Text(
                     text = stringResource(id = R.string.grafica_temp),
+                    modifier = Modifier.testTag("lineChartTemp"),
                     textAlign = TextAlign.Center
                 )
             }
