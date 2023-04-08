@@ -131,7 +131,7 @@ fun FirstScreen(
     ) {
         Text(
             modifier = Modifier.padding(top = 24.dp, bottom = 36.dp),
-            text = "Hi! \n Welcome",
+            text = "Hola! \n Bienvenido",
             fontSize = 55.sp
         )
         Text(

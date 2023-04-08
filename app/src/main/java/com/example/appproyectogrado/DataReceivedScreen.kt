@@ -1,5 +1,6 @@
 package com.example.appproyectogrado
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,6 +24,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.appproyectogrado.viewmodel.DataReceivedScreenViewModel
 import kotlinx.coroutines.launch
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun DataReceivedScreen(navController: NavHostController = rememberNavController()) {
     val scaffoldState = rememberScaffoldState()
@@ -60,7 +63,7 @@ fun DataReceived(dataReceivedScreenViewModel: DataReceivedScreenViewModel) {
             )
         }
         items(cropData) {
-            Text(text = it.toString())
+            Text(text = it.toString(), modifier = Modifier.testTag("dataReceived"))
         }
     }
 }

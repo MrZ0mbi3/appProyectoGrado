@@ -1,5 +1,6 @@
 package com.example.appproyectogrado
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,6 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.appproyectogrado.viewmodel.MicroControllerScreenViewModel
 import kotlinx.coroutines.launch
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MicroControllersScreen(navController: NavHostController = rememberNavController()) {
     val scaffoldState = rememberScaffoldState()
@@ -64,10 +67,15 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                             .padding(all = 10.dp)
                     ) {
                         Text(
-                            modifier = Modifier.padding(vertical = 5.dp),
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("microcontrollerOneDevice"),
                             text = stringResource(id = R.string.estado_microcontrolador) + "\t" + cropData[0].device
                         )
                         Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("microcontrollerOneState"),
                             text =
                             when (stateFirstMicroController) {
                                 true -> stringResource(id = R.string.activo)
@@ -75,11 +83,15 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                             }
                         )
                         Text(
-                            modifier = Modifier.padding(vertical = 5.dp),
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataDate"),
                             text = stringResource(id = R.string.hora_ultimo_dato_tomado) + "\t" + cropData[0].publishedAt
                         )
                         Text(
-                            modifier = Modifier.padding(vertical = 5.dp),
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastData"),
                             text = stringResource(id = R.string.ultimo_dato_tomado) + "\t" + cropData[0].toString()
                         )
                     }
