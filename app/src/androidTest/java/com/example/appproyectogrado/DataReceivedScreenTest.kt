@@ -39,7 +39,7 @@ class DataReceivedScreenTest {
     }
 
     @Test
-    fun dataDisplayed() {
+    fun cropDataDisplayed() {
         composeTestRule.setContent {
             DataReceived(dataReceivedScreenViewModel = dataReceivedScreenViewModel)
         }
