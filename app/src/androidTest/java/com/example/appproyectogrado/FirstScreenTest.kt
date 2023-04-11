@@ -11,7 +11,7 @@ class FirstScreenTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun dataDisplayed() {
+    fun WelcomeMessageAndButtonDisplayed() {
         composeTestRule.setContent {
             FirstScreen()
         }

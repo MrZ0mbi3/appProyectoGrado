@@ -41,7 +41,7 @@ class MicroControllerScreenTest {
     }
 
     @Test
-    fun dataDisplayed() {
+    fun cardWithDataOfFirstMicroControllerDisplayed() {
         composeTestRule.setContent {
             MicroControllerStateScreen(microControllerScreenViewModel)
         }
