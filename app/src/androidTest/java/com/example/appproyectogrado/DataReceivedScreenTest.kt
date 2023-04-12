@@ -35,7 +35,7 @@ class DataReceivedScreenTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        every { dataReceivedScreenViewModel.cropData.value } answers { cropData }
+        every { dataReceivedScreenViewModel.cropDataD1.value } answers { cropData }
     }
 
     @Test

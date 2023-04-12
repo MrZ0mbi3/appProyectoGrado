@@ -36,7 +36,7 @@ class StatsScreenTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        every { statsScreenViewModel.cropData.value } answers { cropData }
+        every { statsScreenViewModel.cropDataD1.value } answers { cropData }
         every { statsScreenViewModel.chartPointsHum01.value } answers {
             listOf(
                 Point(
@@ -61,7 +61,6 @@ class StatsScreenTest {
                 )
             )
         }
-        every { statsScreenViewModel.firstMicrocontroller.value } answers { "TestDevice" }
     }
 
 

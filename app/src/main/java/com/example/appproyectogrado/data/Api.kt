@@ -13,11 +13,11 @@ object Api {
 
     interface RemoteService {
         @GET("getDataStoreData")
-        suspend fun fetchCropData(@Query("amount") amount: Int = 96): CropDataResponse
-
+        suspend fun fetchCropData(
+            @Query("amount") amount: Int = 96,
+            @Query("device") device: String = "EVA01"
+        ): CropDataResponse
         //96 is the number of data of a day from the crop
-        @GET("makePrediction")
-        suspend fun fetchLastPrediction(): PredictionResponse
     }
 
     fun build(): RemoteService {

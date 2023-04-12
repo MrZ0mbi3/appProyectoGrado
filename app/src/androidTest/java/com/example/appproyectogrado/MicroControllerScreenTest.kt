@@ -36,7 +36,7 @@ class MicroControllerScreenTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        every { microControllerScreenViewModel.cropData.value } answers { cropData }
+        every { microControllerScreenViewModel.cropDataD1.value } answers { cropData }
         every { microControllerScreenViewModel.stateFirstMicroController.value } answers { true }
     }
 
