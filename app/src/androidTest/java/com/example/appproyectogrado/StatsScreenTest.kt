@@ -1,9 +1,7 @@
 package com.example.appproyectogrado
 
-import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
 import co.yml.charts.common.model.Point
 import com.example.appproyectogrado.data.CropData
 import com.example.appproyectogrado.viewmodel.StatsScreenViewModel
@@ -20,9 +18,9 @@ class StatsScreenTest {
 
     @RelaxedMockK
     lateinit var statsScreenViewModel: StatsScreenViewModel
-    private val cropData = listOf(
+    private val cropDataD1 = listOf(
         CropData(
-            device = "TestDevice",
+            device = "TestDevice1",
             hum01 = listOf(1.1f),
             hum02 = listOf(1.1f),
             hygro01 = listOf(1.1f),
@@ -36,8 +34,10 @@ class StatsScreenTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        every { statsScreenViewModel.cropData.value } answers { cropData }
-        every { statsScreenViewModel.chartPointsHum01.value } answers {
+        every { statsScreenViewModel.cropDataD1.value } answers { cropDataD1 }
+        every { statsScreenViewModel.cropDataD2.value } answers { listOf() }
+        every { statsScreenViewModel.cropDataD3.value } answers { listOf() }
+        every { statsScreenViewModel.makeListPointsHum01(any()) } answers {
             listOf(
                 Point(
                     x = 1f,
@@ -45,7 +45,7 @@ class StatsScreenTest {
                 )
             )
         }
-        every { statsScreenViewModel.chartPointsLux.value } answers {
+        every { statsScreenViewModel.makeListPointsLight(any()) } answers {
             listOf(
                 Point(
                     x = 1f,
@@ -53,7 +53,7 @@ class StatsScreenTest {
                 )
             )
         }
-        every { statsScreenViewModel.chartPointsTemp.value } answers {
+        every { statsScreenViewModel.makeListPointsTemp(any()) } answers {
             listOf(
                 Point(
                     x = 1f,
@@ -61,7 +61,6 @@ class StatsScreenTest {
                 )
             )
         }
-        every { statsScreenViewModel.firstMicrocontroller.value } answers { "TestDevice" }
     }
 
 
@@ -70,10 +69,14 @@ class StatsScreenTest {
         composeTestRule.setContent {
             Stats(statsScreenViewModel)
         }
-        composeTestRule.onNodeWithTag("deviceName").assertIsDisplayed()
-        composeTestRule.onNodeWithText("TestDevice").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("lineChartHum01").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("lineChartLux").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("lineChartTemp").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("deviceNameDevice1").assertTextContains("TestDevice1")
+            .assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lineChartHum01Device1")
+            .assertTextContains("Humedad en el cultivo durante 24 horas").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lineChartLuxDevice1").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lineChartTempDevice1").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("deviceNameDevice2").assertDoesNotExist()
+        composeTestRule.onNodeWithTag("lineChartHum01Device2").assertDoesNotExist()
+        composeTestRule.onNodeWithTag("lineChartLuxDevice2").assertDoesNotExist()
     }
 }

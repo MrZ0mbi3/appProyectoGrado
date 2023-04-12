@@ -51,7 +51,9 @@ fun DataReceivedScreen(navController: NavHostController = rememberNavController(
 
 @Composable
 fun DataReceived(dataReceivedScreenViewModel: DataReceivedScreenViewModel) {
-    val cropData = dataReceivedScreenViewModel.cropData.collectAsState().value
+    val cropDataD1 = dataReceivedScreenViewModel.cropDataD1.collectAsState().value
+    val cropDataD2 = dataReceivedScreenViewModel.cropDataD2.collectAsState().value
+    val cropDataD3 = dataReceivedScreenViewModel.cropDataD3.collectAsState().value
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -62,8 +64,14 @@ fun DataReceived(dataReceivedScreenViewModel: DataReceivedScreenViewModel) {
                 text = stringResource(id = R.string.datos_recibidos_24horas)
             )
         }
-        items(cropData) {
-            Text(text = it.toString(), modifier = Modifier.testTag("dataReceived"))
+        items(cropDataD1) {
+            Text(text = it.toString(), modifier = Modifier.testTag("dataReceivedD1"))
+        }
+        items(cropDataD2) {
+            Text(text = it.toString(), modifier = Modifier.testTag("dataReceivedD2"))
+        }
+        items(cropDataD3) {
+            Text(text = it.toString(), modifier = Modifier.testTag("dataReceivedD3"))
         }
     }
 }

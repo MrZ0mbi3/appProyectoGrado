@@ -47,17 +47,23 @@ fun MicroControllersScreen(navController: NavHostController = rememberNavControl
 
 @Composable
 fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerScreenViewModel) {
-    val cropData = microControllerScreenViewModel.cropData.collectAsState().value
+    val cropDataD1 = microControllerScreenViewModel.cropDataD1.collectAsState().value
+    val cropDataD2 = microControllerScreenViewModel.cropDataD2.collectAsState().value
+    val cropDataD3 = microControllerScreenViewModel.cropDataD3.collectAsState().value
     val stateFirstMicroController =
         microControllerScreenViewModel.stateFirstMicroController.collectAsState().value
-    if (cropData.isNotEmpty()) {
-        microControllerScreenViewModel.isMicroControllerActive()
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
+    val stateSecondMicroController =
+        microControllerScreenViewModel.stateSecondMicroController.collectAsState().value
+    val stateThirdMicroController =
+        microControllerScreenViewModel.stateThirdMicroController.collectAsState().value
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
+        if (cropDataD1.isNotEmpty()) {
+            microControllerScreenViewModel.isMicroControllerActive()
             item {
                 Card(
                     Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 50.dp)
+                        .padding(horizontal = 20.dp, vertical = 10.dp)
                         .wrapContentHeight(), elevation = 2.dp
                 ) {
                     Column(
@@ -70,7 +76,7 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                             modifier = Modifier
                                 .padding(vertical = 5.dp)
                                 .testTag("microcontrollerOneDevice"),
-                            text = stringResource(id = R.string.estado_microcontrolador) + "\t" + cropData[0].device
+                            text = stringResource(id = R.string.estado_microcontrolador) + "\t" + cropDataD1[0].device
                         )
                         Text(
                             modifier = Modifier
@@ -85,19 +91,113 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                         Text(
                             modifier = Modifier
                                 .padding(vertical = 5.dp)
-                                .testTag("lastDataDate"),
-                            text = stringResource(id = R.string.hora_ultimo_dato_tomado) + "\t" + cropData[0].publishedAt
+                                .testTag("lastDataDateMicrocontrollerOne"),
+                            text = stringResource(id = R.string.hora_ultimo_dato_tomado) + "\t" + cropDataD1[0].publishedAt
                         )
                         Text(
                             modifier = Modifier
                                 .padding(vertical = 5.dp)
-                                .testTag("lastData"),
-                            text = stringResource(id = R.string.ultimo_dato_tomado) + "\t" + cropData[0].toString()
+                                .testTag("lastDataMicrocontrollerOne"),
+                            text = stringResource(id = R.string.ultimo_dato_tomado) + "\t" + cropDataD1[0].toString()
                         )
                     }
                 }
             }
         }
-
+        if (cropDataD2.isNotEmpty()) {
+            microControllerScreenViewModel.isMicroControllerActive()
+            item {
+                Card(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp, vertical = 10.dp)
+                        .wrapContentHeight(), elevation = 2.dp
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                            .padding(all = 10.dp)
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("microcontrollerTwoDevice"),
+                            text = stringResource(id = R.string.estado_microcontrolador) + "\t" + cropDataD2[0].device
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("microcontrollerTwoState"),
+                            text =
+                            when (stateSecondMicroController) {
+                                true -> stringResource(id = R.string.activo)
+                                false -> stringResource(id = R.string.Inactivo)
+                            }
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataDateMicrocontrollerTwo"),
+                            text = stringResource(id = R.string.hora_ultimo_dato_tomado) + "\t" + cropDataD2[0].publishedAt
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerTwo"),
+                            text = stringResource(id = R.string.ultimo_dato_tomado) + "\t" + cropDataD2[0].toString()
+                        )
+                    }
+                }
+            }
+        }
+        if (cropDataD3.isNotEmpty()) {
+            microControllerScreenViewModel.isMicroControllerActive()
+            item {
+                Card(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp, vertical = 10.dp)
+                        .wrapContentHeight(), elevation = 2.dp
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                            .padding(all = 10.dp)
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("microcontrollerThreeDevice"),
+                            text = stringResource(id = R.string.estado_microcontrolador) + "\t" + cropDataD3[0].device
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("microcontrollerThreeState"),
+                            text =
+                            when (stateThirdMicroController) {
+                                true -> stringResource(id = R.string.activo)
+                                false -> stringResource(id = R.string.Inactivo)
+                            }
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataDateMicrocontrollerThree"),
+                            text = stringResource(id = R.string.hora_ultimo_dato_tomado) + "\t" + cropDataD3[0].publishedAt
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerThree"),
+                            text = stringResource(id = R.string.ultimo_dato_tomado) + "\t" + cropDataD3[0].toString()
+                        )
+                    }
+                }
+            }
+        }
     }
+
 }
