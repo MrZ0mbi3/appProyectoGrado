@@ -11,6 +11,7 @@
                   <entry key="Duration" value="90" />
                   <entry key="RFCW10Q4DMA" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="adb-RFCW10Q4DMA-tZsy1I._adb-tls-connect._tcp." value="120" />
                   <entry key="samsung&#10; SM-S911B" value="120" />
                 </map>
               </option>
@@ -25,6 +26,7 @@
                   <entry key="Duration" value="90" />
                   <entry key="RFCW10Q4DMA" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="adb-RFCW10Q4DMA-tZsy1I._adb-tls-connect._tcp." value="120" />
                   <entry key="samsung&#10; SM-S911B" value="120" />
                 </map>
               </option>
@@ -53,6 +55,7 @@
                   <entry key="Duration" value="90" />
                   <entry key="RFCW10Q4DMA" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="adb-RFCW10Q4DMA-tZsy1I._adb-tls-connect._tcp." value="120" />
                   <entry key="samsung&#10; SM-S911B" value="120" />
                 </map>
               </option>
@@ -68,6 +71,7 @@
                   <entry key="Pixel_3a_API_33_arm64-v8a" value="120" />
                   <entry key="RFCW10Q4DMA" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="adb-RFCW10Q4DMA-tZsy1I._adb-tls-connect._tcp." value="120" />
                   <entry key="samsung&#10; SM-S911B" value="120" />
                 </map>
               </option>

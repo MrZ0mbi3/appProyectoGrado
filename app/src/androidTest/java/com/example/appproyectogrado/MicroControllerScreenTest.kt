@@ -1,9 +1,7 @@
 package com.example.appproyectogrado
 
-import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
 import com.example.appproyectogrado.data.CropData
 import com.example.appproyectogrado.viewmodel.MicroControllerScreenViewModel
 import io.mockk.MockKAnnotations
@@ -20,9 +18,21 @@ class MicroControllerScreenTest {
     @RelaxedMockK
     lateinit var microControllerScreenViewModel: MicroControllerScreenViewModel
 
-    private val cropData = listOf(
+    private val cropDataD1 = listOf(
         CropData(
-            device = "TestDevice",
+            device = "TestDevice1",
+            hum01 = listOf(1.1f),
+            hum02 = listOf(1.1f),
+            hygro01 = listOf(1.1f),
+            lux01 = listOf(1.1f),
+            temp01 = listOf(1.1f),
+            temp02 = listOf(1.1f),
+            publishedAt = "2023-03-30T15:30:40.231Z"
+        )
+    )
+    private val cropDataD2 = listOf(
+        CropData(
+            device = "TestDevice2",
             hum01 = listOf(1.1f),
             hum02 = listOf(1.1f),
             hygro01 = listOf(1.1f),
@@ -36,8 +46,12 @@ class MicroControllerScreenTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        every { microControllerScreenViewModel.cropData.value } answers { cropData }
+        every { microControllerScreenViewModel.cropDataD1.value } answers { cropDataD1 }
+        every { microControllerScreenViewModel.cropDataD2.value } answers { cropDataD2 }
+        every { microControllerScreenViewModel.cropDataD3.value } answers { listOf() }
         every { microControllerScreenViewModel.stateFirstMicroController.value } answers { true }
+        every { microControllerScreenViewModel.stateSecondMicroController.value } answers { true }
+        every { microControllerScreenViewModel.stateThirdMicroController.value } answers { false }
     }
 
     @Test
@@ -47,8 +61,21 @@ class MicroControllerScreenTest {
         }
         composeTestRule.onNodeWithTag("microcontrollerOneDevice").assertIsDisplayed()
         composeTestRule.onNodeWithTag("microcontrollerOneState").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Estado MicroControlador: Activo").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("lastDataDate").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("lastData").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("microcontrollerOneState")
+            .assertTextContains("Estado MicroControlador: Activo").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataDateMicrocontrollerOne").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerOne").assertIsDisplayed()
+
+        composeTestRule.onNodeWithTag("microcontrollerTwoDevice").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("microcontrollerTwoState").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("microcontrollerTwoState")
+            .assertTextContains("Estado MicroControlador: Activo").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataDateMicrocontrollerTwo").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerTwo").assertIsDisplayed()
+
+        composeTestRule.onNodeWithTag("microcontrollerThreeDevice").assertDoesNotExist()
+        composeTestRule.onNodeWithTag("microcontrollerThreeState").assertDoesNotExist()
+        composeTestRule.onNodeWithTag("lastDataDateMicrocontrollerThree").assertDoesNotExist()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerThree").assertDoesNotExist()
     }
 }
