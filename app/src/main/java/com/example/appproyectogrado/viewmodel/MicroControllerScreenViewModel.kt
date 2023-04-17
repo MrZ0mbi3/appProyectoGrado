@@ -67,4 +67,12 @@ class MicroControllerScreenViewModel : ViewModel() {
             _stateThirdMicroController.value = cropDataDate == currentDate
         }
     }
+
+    fun makeAverage(data: List<Float>): Float {
+        var average = 0f
+        data.forEach {
+            average += it
+        }
+        return average / data.size
+    }
 }
