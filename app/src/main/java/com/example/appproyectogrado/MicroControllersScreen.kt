@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -98,7 +99,40 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                             modifier = Modifier
                                 .padding(vertical = 5.dp)
                                 .testTag("lastDataMicrocontrollerOne"),
-                            text = stringResource(id = R.string.ultimo_dato_tomado) + "\t" + cropDataD1[0].toString()
+                            textAlign = TextAlign.Center,
+                            text = stringResource(id = R.string.ultimo_dato_tomado)
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerHumOneDevice"),
+                            text = stringResource(id = R.string.humedad) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD1[0].hum01
+                            ).toString()
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerHygroOneDevice"),
+                            text = stringResource(id = R.string.hygro) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD1[0].hygro01
+                            ).toString()
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerLuzOneDevice"),
+                            text = stringResource(id = R.string.humedad) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD1[0].lux01
+                            ).toString()
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerTempOneDevice"),
+                            text = stringResource(id = R.string.temp) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD1[0].temp01
+                            ).toString()
                         )
                     }
                 }
@@ -145,7 +179,40 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                             modifier = Modifier
                                 .padding(vertical = 5.dp)
                                 .testTag("lastDataMicrocontrollerTwo"),
-                            text = stringResource(id = R.string.ultimo_dato_tomado) + "\t" + cropDataD2[0].toString()
+                            text = stringResource(id = R.string.ultimo_dato_tomado),
+                            textAlign = TextAlign.Center
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerHumTwoDevice"),
+                            text = stringResource(id = R.string.humedad) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD2[0].hum01
+                            ).toString()
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerHygroTwoDevice"),
+                            text = stringResource(id = R.string.hygro) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD2[0].hygro01
+                            ).toString()
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerLuzTwoDevice"),
+                            text = stringResource(id = R.string.humedad) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD2[0].lux01
+                            ).toString()
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerTempTwoDevice"),
+                            text = stringResource(id = R.string.temp) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD2[0].temp01
+                            ).toString()
                         )
                     }
                 }
@@ -192,7 +259,40 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                             modifier = Modifier
                                 .padding(vertical = 5.dp)
                                 .testTag("lastDataMicrocontrollerThree"),
-                            text = stringResource(id = R.string.ultimo_dato_tomado) + "\t" + cropDataD3[0].toString()
+                            text = stringResource(id = R.string.ultimo_dato_tomado),
+                            textAlign = TextAlign.Center
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerHumThree"),
+                            text = stringResource(id = R.string.humedad) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD3[0].hum01
+                            ).toString()
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerHygroThree"),
+                            text = stringResource(id = R.string.hygro) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD3[0].hygro01
+                            ).toString()
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerLuzThree"),
+                            text = stringResource(id = R.string.humedad) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD3[0].lux01
+                            ).toString()
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(vertical = 5.dp)
+                                .testTag("lastDataMicrocontrollerTempThree"),
+                            text = stringResource(id = R.string.temp) + "\t" + microControllerScreenViewModel.makeAverage(
+                                cropDataD3[0].temp01
+                            ).toString()
                         )
                     }
                 }

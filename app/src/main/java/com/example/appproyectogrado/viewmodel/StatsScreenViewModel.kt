@@ -40,7 +40,8 @@ class StatsScreenViewModel : ViewModel() {
     }
 
     fun makeListPointsHum01(data: List<CropData>): List<Point> {
-        val pointsData = mutableListOf<Point>()
+        val pointsData =
+            if (data.isEmpty()) mutableListOf<Point>(Point(0f, 0f)) else mutableListOf<Point>()
         var hum01Avg = 0f
         val hourUsed = mutableListOf<Float>()
         var actualHour: Float
@@ -61,7 +62,8 @@ class StatsScreenViewModel : ViewModel() {
     }
 
     fun makeListPointsLight(data: List<CropData>): List<Point> {
-        val pointsData = mutableListOf<Point>()
+        val pointsData =
+            if (data.isEmpty()) mutableListOf<Point>(Point(0f, 0f)) else mutableListOf<Point>()
         var luxAvg = 0f
         val hourUsed = mutableListOf<Float>()
         var actualHour: Float
@@ -82,7 +84,8 @@ class StatsScreenViewModel : ViewModel() {
     }
 
     fun makeListPointsTemp(data: List<CropData>): List<Point> {
-        val pointsData = mutableListOf<Point>()
+        val pointsData =
+            if (data.isEmpty()) mutableListOf<Point>(Point(0f, 0f)) else mutableListOf<Point>()
         var tempAvg = 0f
         val hourUsed = mutableListOf<Float>()
         var actualHour: Float
