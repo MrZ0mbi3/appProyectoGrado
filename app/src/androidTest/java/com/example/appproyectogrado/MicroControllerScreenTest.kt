@@ -55,7 +55,7 @@ class MicroControllerScreenTest {
     }
 
     @Test
-    fun cardWithDataOfFirstMicroControllerDisplayed() {
+    fun cardWithDataOfMicroControllersDisplayed() {
         composeTestRule.setContent {
             MicroControllerStateScreen(microControllerScreenViewModel)
         }
@@ -65,6 +65,10 @@ class MicroControllerScreenTest {
             .assertTextContains("Estado MicroControlador: Activo").assertIsDisplayed()
         composeTestRule.onNodeWithTag("lastDataDateMicrocontrollerOne").assertIsDisplayed()
         composeTestRule.onNodeWithTag("lastDataMicrocontrollerOne").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerHumOneDevice").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerHygroOneDevice").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerLuzOneDevice").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerTempOneDevice").assertIsDisplayed()
 
         composeTestRule.onNodeWithTag("microcontrollerTwoDevice").assertIsDisplayed()
         composeTestRule.onNodeWithTag("microcontrollerTwoState").assertIsDisplayed()
@@ -72,10 +76,18 @@ class MicroControllerScreenTest {
             .assertTextContains("Estado MicroControlador: Activo").assertIsDisplayed()
         composeTestRule.onNodeWithTag("lastDataDateMicrocontrollerTwo").assertIsDisplayed()
         composeTestRule.onNodeWithTag("lastDataMicrocontrollerTwo").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerHumTwoDevice").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerHygroTwoDevice").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerLuzTwoDevice").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerTempTwoDevice").assertIsDisplayed()
 
         composeTestRule.onNodeWithTag("microcontrollerThreeDevice").assertDoesNotExist()
         composeTestRule.onNodeWithTag("microcontrollerThreeState").assertDoesNotExist()
         composeTestRule.onNodeWithTag("lastDataDateMicrocontrollerThree").assertDoesNotExist()
         composeTestRule.onNodeWithTag("lastDataMicrocontrollerThree").assertDoesNotExist()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerHumThree").assertDoesNotExist()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerHygroThree").assertDoesNotExist()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerLuzThree").assertDoesNotExist()
+        composeTestRule.onNodeWithTag("lastDataMicrocontrollerTempThree").assertDoesNotExist()
     }
 }

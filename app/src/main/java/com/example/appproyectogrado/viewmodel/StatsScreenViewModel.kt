@@ -23,17 +23,17 @@ class StatsScreenViewModel : ViewModel() {
 
     private fun loadCropData(amount: Int = 96) {
         viewModelScope.launch {
-            cropDataApi.fetchCropData(amount, "EVA01_1").data.let {
+            cropDataApi.fetchCropData(amount, "SYS01_1").data.let {
                 _cropDataD1.value = it
             }
         }
         viewModelScope.launch {
-            cropDataApi.fetchCropData(amount, "EVA02_1").data.let {
+            cropDataApi.fetchCropData(amount, "SYS02_1").data.let {
                 _cropDataD2.value = it
             }
         }
         viewModelScope.launch {
-            cropDataApi.fetchCropData(amount, "REI_1").data.let {
+            cropDataApi.fetchCropData(amount, "wSYS_1").data.let {
                 _cropDataD3.value = it
             }
         }
