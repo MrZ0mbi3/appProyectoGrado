@@ -105,7 +105,7 @@ class StatsScreenViewModel : ViewModel() {
         return pointsData
     }
 
-    private fun getHourFromDate(date: String): Float {
+    fun getHourFromDate(date: String): Float {
         val newDate = date.split("T")
         return (newDate[1][0].toString() + newDate[1][1].toString()).toFloat()
     }
