@@ -122,7 +122,7 @@ fun DataReceived(dataReceivedScreenViewModel: DataReceivedScreenViewModel) {
         }
         if (cropDataD3.isNotEmpty()) {
             item {
-                Text(text = cropDataD2[0].device, modifier = Modifier.testTag("dataReceivedD3"))
+                Text(text = cropDataD3[0].device, modifier = Modifier.testTag("dataReceivedD3"))
             }
         }
         items(cropDataD3) {
