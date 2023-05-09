@@ -2,8 +2,7 @@ package com.example.appproyectogrado
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
@@ -64,14 +63,90 @@ fun DataReceived(dataReceivedScreenViewModel: DataReceivedScreenViewModel) {
                 text = stringResource(id = R.string.datos_recibidos_24horas)
             )
         }
+        if (cropDataD1.isNotEmpty()) {
+            item {
+                Text(text = cropDataD1[0].device, modifier = Modifier.testTag("dataReceivedD1"))
+            }
+        }
+
         items(cropDataD1) {
-            Text(text = it.toString(), modifier = Modifier.testTag("dataReceivedD1"))
+            Card(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 10.dp)
+                    .wrapContentHeight(), elevation = 2.dp
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(all = 10.dp)
+                ) {
+                    Text(text = "Fecha: " + it.publishedAt)
+                    Text(text = "Humedad01: " + it.hum01)
+                    Text(text = "Humedad02: " + it.hum02)
+                    Text(text = "Hygro: " + it.hygro01)
+                    Text(text = "luz: " + it.lux01)
+                    Text(text = "Temperatura 1:" + it.temp01)
+                    Text(text = "Temperatura 2:" + it.temp02)
+                }
+            }
+        }
+        if (cropDataD2.isNotEmpty()) {
+            item {
+                Text(text = cropDataD2[0].device, modifier = Modifier.testTag("dataReceivedD2"))
+            }
         }
         items(cropDataD2) {
-            Text(text = it.toString(), modifier = Modifier.testTag("dataReceivedD2"))
+            Card(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 10.dp)
+                    .wrapContentHeight(), elevation = 2.dp
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(all = 10.dp)
+                ) {
+                    Text(text = "Fecha: " + it.publishedAt)
+                    Text(text = "Humedad01: " + it.hum01)
+                    Text(text = "Humedad02: " + it.hum02)
+                    Text(text = "Hygro: " + it.hygro01)
+                    Text(text = "luz: " + it.lux01)
+                    Text(text = "Temperatura 1:" + it.temp01)
+                    Text(text = "Temperatura 2:" + it.temp02)
+                }
+            }
+        }
+        if (cropDataD3.isNotEmpty()) {
+            item {
+                Text(text = cropDataD2[0].device, modifier = Modifier.testTag("dataReceivedD3"))
+            }
         }
         items(cropDataD3) {
-            Text(text = it.toString(), modifier = Modifier.testTag("dataReceivedD3"))
+            Card(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 10.dp)
+                    .wrapContentHeight(), elevation = 2.dp
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(all = 10.dp)
+                ) {
+                    Text(text = "Fecha: " + it.publishedAt)
+                    Text(text = "Humedad01: " + it.hum01)
+                    Text(text = "Humedad02: " + it.hum02)
+                    Text(text = "Hygro: " + it.hygro01)
+                    Text(text = "luz: " + it.lux01)
+                    Text(text = "Temperatura 1:" + it.temp01)
+                    Text(text = "Temperatura 2:" + it.temp02)
+                }
+            }
         }
     }
 }
