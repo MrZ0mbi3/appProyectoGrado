@@ -36,8 +36,8 @@ class DataReceivedScreenTest {
     fun setUp() {
         MockKAnnotations.init(this)
         every { dataReceivedScreenViewModel.cropDataD1.value } answers { cropData }
-        every { dataReceivedScreenViewModel.cropDataD2.value } answers { listOf() }
-        every { dataReceivedScreenViewModel.cropDataD3.value } answers { cropData }
+        every { dataReceivedScreenViewModel.cropDataD2.value } answers { cropData }
+        every { dataReceivedScreenViewModel.cropDataD3.value } answers { listOf() }
     }
 
     @Test
@@ -46,8 +46,8 @@ class DataReceivedScreenTest {
             DataReceived(dataReceivedScreenViewModel = dataReceivedScreenViewModel)
         }
         composeTestRule.onNodeWithTag("dataReceivedD1").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("dataReceivedD2").assertDoesNotExist()
-        composeTestRule.onNodeWithTag("dataReceivedD3").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("dataReceivedD2").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("dataReceivedD3").assertDoesNotExist()
 
     }
 }
