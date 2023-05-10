@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -65,7 +66,7 @@ fun DataReceived(dataReceivedScreenViewModel: DataReceivedScreenViewModel) {
         }
         if (cropDataD1.isNotEmpty()) {
             item {
-                Text(text = cropDataD1[0].device, modifier = Modifier.testTag("dataReceivedD1"))
+                Text(text = cropDataD1[0].device, modifier = Modifier.testTag("dataReceivedD1"), fontWeight = FontWeight.Bold)
             }
         }
 
@@ -94,7 +95,7 @@ fun DataReceived(dataReceivedScreenViewModel: DataReceivedScreenViewModel) {
         }
         if (cropDataD2.isNotEmpty()) {
             item {
-                Text(text = cropDataD2[0].device, modifier = Modifier.testTag("dataReceivedD2"))
+                Text(text = cropDataD2[0].device, modifier = Modifier.testTag("dataReceivedD2"), fontWeight = FontWeight.Bold)
             }
         }
         items(cropDataD2) {
@@ -122,7 +123,7 @@ fun DataReceived(dataReceivedScreenViewModel: DataReceivedScreenViewModel) {
         }
         if (cropDataD3.isNotEmpty()) {
             item {
-                Text(text = cropDataD3[0].device, modifier = Modifier.testTag("dataReceivedD3"))
+                Text(text = cropDataD3[0].device, modifier = Modifier.testTag("dataReceivedD3"), fontWeight = FontWeight.Bold)
             }
         }
         items(cropDataD3) {
