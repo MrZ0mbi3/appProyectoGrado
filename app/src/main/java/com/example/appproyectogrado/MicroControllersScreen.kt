@@ -122,7 +122,7 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                             modifier = Modifier
                                 .padding(vertical = 5.dp)
                                 .testTag("lastDataMicrocontrollerLuzOneDevice"),
-                            text = stringResource(id = R.string.humedad) + "\t" + microControllerScreenViewModel.makeAverage(
+                            text = stringResource(id = R.string.luz) + "\t" + microControllerScreenViewModel.makeAverage(
                                 cropDataD1[0].lux01
                             ).toString()
                         )
@@ -202,7 +202,7 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                             modifier = Modifier
                                 .padding(vertical = 5.dp)
                                 .testTag("lastDataMicrocontrollerLuzTwoDevice"),
-                            text = stringResource(id = R.string.humedad) + "\t" + microControllerScreenViewModel.makeAverage(
+                            text = stringResource(id = R.string.luz) + "\t" + microControllerScreenViewModel.makeAverage(
                                 cropDataD2[0].lux01
                             ).toString()
                         )
@@ -282,7 +282,7 @@ fun MicroControllerStateScreen(microControllerScreenViewModel: MicroControllerSc
                             modifier = Modifier
                                 .padding(vertical = 5.dp)
                                 .testTag("lastDataMicrocontrollerLuzThree"),
-                            text = stringResource(id = R.string.humedad) + "\t" + microControllerScreenViewModel.makeAverage(
+                            text = stringResource(id = R.string.luz) + "\t" + microControllerScreenViewModel.makeAverage(
                                 cropDataD3[0].lux01
                             ).toString()
                         )
