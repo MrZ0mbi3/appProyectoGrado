@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -338,7 +339,8 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
                     modifier = Modifier
                         .padding(vertical = 20.dp)
                         .testTag("deviceNameDevice1"),
-                    text = cropDataD1[0].device
+                    text = cropDataD1[0].device,
+                    fontWeight = FontWeight.Bold
                 )
             }
             lineChartHum01D1?.let {
@@ -399,7 +401,8 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
                     modifier = Modifier
                         .padding(vertical = 20.dp)
                         .testTag("deviceNameDevice2"),
-                    text = cropDataD2[0].device
+                    text = cropDataD2[0].device,
+                    fontWeight = FontWeight.Bold
                 )
             }
             lineChartHum01D2?.let {
@@ -460,7 +463,8 @@ fun Stats(statsScreenViewModel: StatsScreenViewModel) {
                     modifier = Modifier
                         .padding(vertical = 20.dp)
                         .testTag("deviceNameDevice3"),
-                    text = cropDataD3[0].device
+                    text = cropDataD3[0].device,
+                    fontWeight = FontWeight.Bold
                 )
             }
             lineChartHum01D3?.let {
